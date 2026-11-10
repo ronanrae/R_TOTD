@@ -43,7 +43,7 @@ An intro to ggstatsplot
 
 ## ggbetweenstats {transition="slide"}
 
-:::incremental
+::: incremental
 - boxplot, violin plot, or mix of both
 :::
 
@@ -84,6 +84,8 @@ SleepStudy |>
     type = "parametric"
   )
 ```
+
+
 
 ## ggwithinstats {auto-animate=true}
 ```{r}
@@ -166,7 +168,7 @@ ggscatterstats(
 
 ## ggbarstats
 :::incremental
-- Bargraph
+- Creates a Stacked Barchart
 - Has visual percentages
 :::
 
@@ -205,9 +207,9 @@ Pro's
 
 ::: incremental
 - Good for papers or work where viewer can spend time looking at graph
-- Many of the inputs are similar to ggplot 
+- Many of the arguments are similar to ggplot 
 - Minimal inputs are needed to begin to use
-- Very interesting and detailed statistics are easily avaliable on models
+- Very interesting and detailed statistics are easily available on models
 :::
 
 ## Strengths and Weaknesses {auto-animate=true}

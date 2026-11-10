@@ -217,8 +217,7 @@ Con's
 
 ::: incremental
 - Too busy visually for presentations
-- Some naming conventions are different from ggplot (ex. xlab)
-- Feels less organized because of commas
+- Some naming conventions are different from ggplot (ex. grouping)
 :::
 
 

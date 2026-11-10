@@ -1,0 +1,245 @@
+---
+title: "R Tip of the Day"
+subtitle: "The ggstatsplot package"
+author: "Ronan Jenkins"
+date: "November 10, 2026"
+format:
+  revealjs:
+    code-line-number: true
+    theme: "beige"
+    slide-number: true
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(tidyverse)
+library(ggstatsplot)
+library(forcats)
+```
+
+```{r}
+library(readr)
+SleepStudy <- read_csv("SleepStudy.csv")
+```
+
+## {auto-animate=true}
+
+::: {.fragment .fade-left}
+An intro to ggstatsplot
+:::
+
+::: incremental
+- Combines visualizations with statistical testing
+- Can specify statistical approach:
+  - Parametric
+  - Nonparametric
+  - Robust
+  - Bayes
+:::
+
+## ggbetweenstats {transition="slide"}
+
+:::incremental
+- boxplot, violin plot, or mix of both
+:::
+
+```{.r code-line-numbers="1"}
+ggbetweenstats(
+  data = SleepStudy,
+  x = LarkOwl,
+  y = GPA
+)
+```
+
+## ggbetweenstats {auto-animate=true}
+```{r}
+ggbetweenstats(
+  data = SleepStudy,
+  x = LarkOwl,
+  y = GPA
+)
+```
+
+
+## ggwithinstats {auto-animate=true}
+
+```{.r code-line-numbers="1-5|7"}
+SleepStudy |>
+  pivot_longer(
+    cols = c(WeekdayRise, WeekendRise),
+    names_to = "Day",
+    values_to = "RiseTime"
+  ) |>
+ ggwithinstats(
+    x = Day,
+    y = RiseTime,
+    title = "Weekend vs. Weekday Rise Times",
+    xlab = "Day",
+    ylab = "Rise Time",
+    pairwise.display = "significant",
+    type = "parametric"
+  )
+```
+
+## ggwithinstats {auto-animate=true}
+```{r}
+SleepStudy |>
+  pivot_longer(
+    cols = c(WeekdayRise, WeekendRise),
+    names_to = "Day",
+    values_to = "RiseTime"
+  ) |>
+ ggwithinstats(
+    x = Day,
+    y = RiseTime,
+    title = "Weekend vs. Weekday Rise Times",
+    xlab = "Day",
+    ylab = "Rise Time",
+    pairwise.display = "significant",
+    type = "parametric"
+  )
+```
+
+## gghistostats
+:::incremental
+- Histogram automatically has median/mean line
+- Using "grouped_" (similar to faceting)
+:::
+
+```{.r code-line-numbers="3|6|8-9"}
+SleepStudy |>
+  filter(AnxietyStatus != "moderate") |>
+grouped_gghistostats(
+  x = PoorSleepQuality,
+  type = "n",
+  grouping.var = AnxietyStatus,
+  binwidth = 2,
+ annotation.args = list(title = "Poor Sleep Quality for Different Anxiety Levels"),
+ plotgrid.args = list(ncol = 1)
+)
+```
+
+## gghistostats {auto-animate=true}
+
+```{r}
+SleepStudy |>
+  filter(AnxietyStatus != "moderate") |>
+grouped_gghistostats(
+  x = PoorSleepQuality,
+  type = "n",
+  grouping.var = AnxietyStatus,
+  binwidth = 2,
+ annotation.args = list(title = "Poor Sleep Quality for Different Anxiety Levels"),
+ plotgrid.args = list(ncol = 1)
+)
+```
+
+## ggscatterstats {transition="concave"}
+:::incremental
+- Creates scatterplot
+- Shows histogram of each variable
+:::
+
+```{.r code-line-numbers="1"}
+ggscatterstats(
+  data = SleepStudy,
+  x = WeekdaySleep,
+  y = WeekdayRise,
+  title = "College Student Weekday Sleep and Rise Time"
+)
+```
+
+## ggscatterstats
+
+```{r}
+ggscatterstats(
+  data = SleepStudy,
+  x = WeekdaySleep,
+  y = WeekdayRise,
+  title = "College Student Weekday Sleep and Rise Time"
+)
+```
+
+## ggbarstats
+:::incremental
+- Bargraph
+- Has visual percentages
+:::
+
+```{.r code-line-numbers="1|9"}
+ggbarstats(
+  data = SleepStudy,
+  x = AnxietyStatus,
+  y = DepressionStatus,
+  type = "parametric",
+  title = "Depression and Anxiety Levels",
+  xlab = "Anxiety Level",
+  legend.title = "Depression Level",
+  results.subtitle = FALSE
+)
+```
+
+## ggbarstats
+
+```{r}
+ggbarstats(
+  data = SleepStudy,
+  x = AnxietyStatus,
+  y = DepressionStatus,
+  type = "parametric",
+  title = "Depression and Anxiety Levels",
+  xlab = "Anxiety Level",
+  legend.title = "Depression Level",
+  results.subtitle = FALSE
+)
+```
+
+
+## Strengths and Weaknesses {auto-animate=true}
+
+Pro's
+
+::: incremental
+- Good for papers or work where viewer can spend time looking at graph
+- Many of the inputs are similar to ggplot 
+- Minimal inputs are needed to begin to use
+- Very interesting and detailed statistics are easily avaliable on models
+:::
+
+## Strengths and Weaknesses {auto-animate=true}
+Con's
+
+::: incremental
+- Too busy visually for presentations
+- Some naming conventions are different from ggplot (ex. xlab)
+- Feels less organized because of commas
+:::
+
+
+## References
+
+https://r-graph-gallery.com/package/ggstatsplot.html
+
+
+https://www.indrapatil.com/ggstatsplot/index.html
+
+
+?ggstatsplot in R console
+- great documentation off all inputs and details about each statistical test method
+
+
+## {auto-animate=true}
+
+::: {style="margin-top: 100px; color:red;"}
+Thank You!!
+:::
+
+## {auto-animate=true}
+
+::: {style="margin-top: 200px; font-size: 2.5em; color: blue;"}
+Thank You!!
+:::

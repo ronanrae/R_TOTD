@@ -224,14 +224,14 @@ Con's
 
 ## References
 
-https://r-graph-gallery.com/package/ggstatsplot.html
+<https://r-graph-gallery.com/package/ggstatsplot.html>
 
 
-https://www.indrapatil.com/ggstatsplot/index.html
+<https://www.indrapatil.com/ggstatsplot/index.html>
 
 
 ?ggstatsplot in R console
-- great documentation off all inputs and details about each statistical test method
+- great documentation of all arguments, approaches, and testing methods
 
 
 ## {auto-animate=true}
